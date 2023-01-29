@@ -78,12 +78,12 @@ namespace WpfFEDSubMenu.ViewModel
         {
             switch (parameter)
             {
-                case "mnuHome":
+                case "mnuReports":
                     CurrentChildView = new SwitchBoardViewModel();
                     Caption = "Main SwitchBoard";
                     Icon = "../Assets/img_home.png";
                     break;
-                case "mnuMovies":
+                case "mnuDocuments":
                     CurrentChildView = new CustomerViewModel();
                     Caption = "Movies";
                     Icon = "../Assets/img_movies.png";

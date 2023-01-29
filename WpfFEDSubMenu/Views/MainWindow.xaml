@@ -161,14 +161,14 @@
 
                         <!--// Main Menu - Home //-->
 
-                        <MenuItem x:Name="mnuHome" Header="Home"
+                        <MenuItem x:Name="mnuReports" Header="Reports"
                                   Tag="{StaticResource Menu1}"
                                   Template="{StaticResource Menu_Template}" 
                                   Click="MenuItem_Click" 
                                   IsCheckable="True"  
                                   MouseEnter="mnuHome_MouseEnter"
                                   MouseLeave="mnuHome_MouseLeave" Cursor="Hand"
-                                  CommandParameter="mnuHome"
+                                  CommandParameter="mnuReports"
                                   Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, Path=DataContext.MenuCommand}">
                             <MenuItem.Icon>
                                 <Image Source="../Assets/img_home.png"
@@ -176,7 +176,7 @@
                             </MenuItem.Icon>
                         </MenuItem>
 
-                        <MenuItem x:Name="mnuMusic" Header="Music"
+                        <MenuItem x:Name="mnuImages" Header="Images"
                                   Tag="{StaticResource SubMenu1}"
                                   Template="{StaticResource Menu_SubMenu_Template}" 
                                   SubmenuOpened="mnuMusic_SubmenuOpened" 
@@ -376,14 +376,14 @@
                         </MenuItem>
                         <!--// Main Menu - Movies //-->
 
-                        <MenuItem x:Name="mnuMovies" Header="Movies"
+                        <MenuItem x:Name="mnuDocuments" Header="Documents"
                                   Tag="{StaticResource Menu2}"
                                   Template="{StaticResource Menu_Template}" 
                                   Click="MenuItem_Click" 
                                   IsCheckable="True" 
                                   MouseEnter="mnuMovies_MouseEnter" 
                                   MouseLeave="mnuMovies_MouseLeave" Cursor="Hand"
-                                  CommandParameter="mnuMovies"
+                                  CommandParameter="mnuDocuments"
                                   Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, Path=DataContext.MenuCommand}">>
 
                             <MenuItem.Icon>

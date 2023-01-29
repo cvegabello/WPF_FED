@@ -434,16 +434,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
 
-                    <Grid Margin="10,-30,10,10" Cursor="Hand">
+                    <Grid Margin="20,-40,20,0" Cursor="Hand">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="140" />
                         </Grid.ColumnDefinitions>
 
                         <!--Image and Text-->
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="95" /> 
-                            <RowDefinition Height="35" />
+                            <RowDefinition Height="125" /> 
+                            <RowDefinition Height="85" />
                         </Grid.RowDefinitions>
 
                         <Border x:Name="border"
@@ -459,13 +459,13 @@
                                 
                             </Border.Background>
                         </Border>
-                        
-                        <Image x:Name="SidebarRadioButtonMenuIcon"
+                        <StackPanel VerticalAlignment="Center">
+                            <Image x:Name="SidebarRadioButtonMenuIcon"
                                Grid.Row="0"
                                Stretch="Fill"
                                Source="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}"
                                HorizontalAlignment="Center"
-                               VerticalAlignment="Top"
+                               VerticalAlignment="Center"
                                Margin="0,5,0,15" 
                                Height="45"
                                Width="45"/>
@@ -473,13 +473,16 @@
                         <TextBlock x:Name="SidebarRadioButtonMenuText"
                                    Grid.Row="0"
                                    Text="{TemplateBinding Property=Content}"
-                                   VerticalAlignment="Bottom"
+                                   VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
                                    Foreground="#E8EAEC"
                                    FontSize="13"
                                    FontFamily="Fonts/Roboto-Regular.ttf #Roboto Regular"
-                                   Margin="2,0,2,10"
+                                   Margin="2,0,2,0"
                                    TextWrapping="WrapWithOverflow"/>
+                        </StackPanel>
+                        
+                        
 
                     </Grid>
 

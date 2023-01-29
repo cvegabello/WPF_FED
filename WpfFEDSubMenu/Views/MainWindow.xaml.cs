@@ -57,23 +57,23 @@ namespace WpfFEDSubMenu
 
             {
 
-                case "mnuHome":
-                    
-                    mnuMovies.IsChecked=false;
+                case "mnuReports":
+
+                    mnuDocuments.IsChecked=false;
                     
                     break;
 
-                case "mnuMovies":
-                    
-                    mnuHome.IsChecked = false;
+                case "mnuDocuments":
+
+                    mnuReports.IsChecked = false;
 
                     break;
 
-                case "mnuMusic":
-                    mnuMovies.IsChecked = false;
-                    mnuHome.IsChecked = false;
+                //case "mnuMusic":
+                //    mnuDocuments.IsChecked = false;
+                //    mnuReports.IsChecked = false;
                                         
-                    break;
+                //    break;
 
             }
 
@@ -83,8 +83,8 @@ namespace WpfFEDSubMenu
 
         private void mnuMusic_SubmenuOpened(object sender, RoutedEventArgs e)
         {
-            mnuMovies.IsChecked = false;
-            mnuHome.IsChecked = false;
+            mnuDocuments.IsChecked = false;
+            mnuReports.IsChecked = false;
             Tg_Btn.IsChecked = true;
             popup_tooltip.Visibility = Visibility.Collapsed;
             popup_tooltip.IsOpen = false;
@@ -103,8 +103,8 @@ namespace WpfFEDSubMenu
         {
             if ((bool)!Tg_Btn.IsChecked)
             {
-                popup_tooltip.PlacementTarget = mnuHome;
-                Header.PopupText.Text = "Home";
+                popup_tooltip.PlacementTarget = mnuReports;
+                Header.PopupText.Text = "Reports";
                 popup_tooltip.Placement = PlacementMode.Left;
                 popup_tooltip.IsOpen = true;
 
@@ -115,8 +115,8 @@ namespace WpfFEDSubMenu
         {
             if ((bool)!Tg_Btn.IsChecked)
             {
-                popup_tooltip.PlacementTarget = mnuMusic;
-                Header.PopupText.Text = "Music";
+                popup_tooltip.PlacementTarget = mnuImages;
+                Header.PopupText.Text = "Images";
                 popup_tooltip.Placement = PlacementMode.Left;
                 popup_tooltip.IsOpen = true;
 
@@ -134,8 +134,8 @@ namespace WpfFEDSubMenu
         {
             if ((bool)!Tg_Btn.IsChecked)
             {
-                popup_tooltip.PlacementTarget = mnuMovies;
-                Header.PopupText.Text = "Movies";
+                popup_tooltip.PlacementTarget = mnuDocuments;
+                Header.PopupText.Text = "Documents";
                 popup_tooltip.Placement = PlacementMode.Left;
                 popup_tooltip.IsOpen = true;
 
