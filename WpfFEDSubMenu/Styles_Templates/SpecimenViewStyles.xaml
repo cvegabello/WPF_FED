@@ -242,8 +242,6 @@
         <Setter Property="Background" Value="{StaticResource ComboBox.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ComboBox.Static.Border}"/>
         <Setter Property="Foreground" Value="{StaticResource plainTextColor4}"/>
-
-
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>

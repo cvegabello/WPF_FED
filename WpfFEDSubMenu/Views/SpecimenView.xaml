@@ -8,6 +8,62 @@
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1000"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+    <UserControl.Resources>
+        <!--REGION TEXTBOX-->
+        <SolidColorBrush x:Key="TextBox.MouseOver.Background" Color="#07F3C0"/>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#07F3C0"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#07F3C0"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#07F3C0"/>
+        <Style x:Key="TextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="FontFamily" Value="../Fonts/Orbitron-Medium.ttf"/>
+            <Setter Property="Foreground" Value="{StaticResource plainTextColor4}"/>
+            <Setter Property="Padding" Value="6,3,5,3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius ="5" x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{StaticResource TextBox.Static.Border}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource ComboBox.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                                <Setter Property="BorderThickness" TargetName="border" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                                <Setter Property="BorderThickness" TargetName="border" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--ENDREGION-->
+               
+    </UserControl.Resources>
     
     <UserControl.DataContext>
         <viewmodel:SpecimenViewModel />
@@ -202,7 +258,7 @@
                             FontSize="11"/>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="2">
-                    <TextBox x:Name="tbSpecimenName"
+                    <TextBox Style="{DynamicResource TextBox}" x:Name="tbSpecimenName"
                              HorizontalContentAlignment="Center"
                              VerticalAlignment="Center"
                              Height="24"
@@ -221,6 +277,8 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     
@@ -321,6 +379,92 @@
                     
 
                 </Grid>
+                <Grid Grid.Row="0" Grid.Column="3">
+                    <TextBlock 
+                            Text="HAS DEFECTS"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="4">
+                    <ComboBox x:Name="cmbHasDefect" 
+                            Style="{DynamicResource ComboBox}"
+                            Cursor="Hand"
+                            HorizontalContentAlignment="Center"
+                            VerticalAlignment="Center"
+                            Height="21"
+                            Width="120"
+                            Margin="8,0,0,0"
+                    >
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ComboBoxItem}">
+                                <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"/>
+                                <Setter Property="FontSize" Value="11"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Medium"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                            <Border CornerRadius="6" SnapsToDevicePixels="True"
+                                                            Background="{TemplateBinding Background}"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Padding="{TemplateBinding Padding}"
+                                                            Margin="5,0,5,0"
+                                                           >
+                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                          />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsHighlighted" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource color8}"/>
+                                                    <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsHighlighted" Value="False">
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </Trigger>
+
+                                            </ControlTemplate.Triggers>
+
+                                        </ControlTemplate>
+                                    </Setter.Value>
+
+                                </Setter>
+
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+
+                    </ComboBox>
+
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="6">
+                    <TextBlock 
+                            Text="RW"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="7">
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             x:Name="tbRW"
+                             HorizontalContentAlignment="Center"
+                             VerticalAlignment="Center"
+                             Height="21"
+                             Width="80"
+                             Margin="8,0,0,0"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             />
+
+                </Grid>
+
                 <Grid Grid.Row="2" Grid.Column="0">
                     <TextBlock 
                             Text="SPECIMEN TYPE"
@@ -383,6 +527,92 @@
                     </ComboBox>
 
                 </Grid>
+                <Grid Grid.Row="2" Grid.Column="3">
+                    <TextBlock 
+                            Text="OWNING SITE"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="4">
+                    <ComboBox Style="{DynamicResource ComboBox}"
+                            Cursor="Hand"
+                            HorizontalContentAlignment="Center"
+                            VerticalAlignment="Center"
+                            x:Name="cmbOwnSite" 
+                            Height="21"
+                            Width="120"
+                            Margin="8,0,0,0"
+                    >
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ComboBoxItem}">
+                                <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"/>
+                                <Setter Property="FontSize" Value="11"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Medium"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                            <Border CornerRadius="6" SnapsToDevicePixels="True"
+                                                            Background="{TemplateBinding Background}"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Padding="{TemplateBinding Padding}"
+                                                            Margin="5,0,5,0"
+                                                           >
+                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                          />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsHighlighted" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource color8}"/>
+                                                    <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsHighlighted" Value="False">
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </Trigger>
+
+                                            </ControlTemplate.Triggers>
+
+                                        </ControlTemplate>
+                                    </Setter.Value>
+
+                                </Setter>
+
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+
+                    </ComboBox>
+
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="6">
+                    <TextBlock 
+                            Text="RL"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="7">
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             x:Name="tbRL"
+                             HorizontalContentAlignment="Center"
+                             VerticalAlignment="Center"
+                             Height="21"
+                             Width="80"
+                             Margin="8,0,0,0"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             />
+
+                </Grid>
+                
                 <Grid Grid.Row="4" Grid.Column="0">
                     <TextBlock 
                             Text="FUEL LOT"
@@ -447,6 +677,92 @@
                     </ComboBox>
 
                 </Grid>
+                <Grid Grid.Row="4" Grid.Column="3">
+                    <TextBlock 
+                            Text="CLADDING INGOT"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="4">
+                    <ComboBox Style="{DynamicResource ComboBox}"
+                            Cursor="Hand"
+                            HorizontalContentAlignment="Center"
+                            VerticalAlignment="Center"
+                            x:Name="cmbCladdIngot" 
+                            Height="21"
+                            Width="120"
+                            Margin="8,0,0,0"
+                    >
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ComboBoxItem}">
+                                <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"/>
+                                <Setter Property="FontSize" Value="11"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Medium"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                            <Border CornerRadius="6" SnapsToDevicePixels="True"
+                                                            Background="{TemplateBinding Background}"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Padding="{TemplateBinding Padding}"
+                                                            Margin="5,0,5,0"
+                                                           >
+                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                          />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsHighlighted" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource color8}"/>
+                                                    <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsHighlighted" Value="False">
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </Trigger>
+
+                                            </ControlTemplate.Triggers>
+
+                                        </ControlTemplate>
+                                    </Setter.Value>
+
+                                </Setter>
+
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+
+                    </ComboBox>
+
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="6">
+                    <TextBlock 
+                            Text="FILLER VOLUME (CC)"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="7">
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             x:Name="tbFillVol"
+                             HorizontalContentAlignment="Center"
+                             VerticalAlignment="Center"
+                             Height="21"
+                             Width="80"
+                             Margin="8,0,0,0"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             />
+
+                </Grid>
+
                 <Grid Grid.Row="6" Grid.Column="0">
                     <TextBlock 
                             Text="POISON LOT"
@@ -507,6 +823,92 @@
                         </ComboBox.ItemContainerStyle>
                     </ComboBox>
                 </Grid>
+                <Grid Grid.Row="6" Grid.Column="3">
+                    <TextBlock 
+                            Text="DRAWING NUMBER"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="6" Grid.Column="4">
+                    <ComboBox Style="{DynamicResource ComboBox}"
+                            Cursor="Hand"
+                            HorizontalContentAlignment="Center"
+                            VerticalAlignment="Center"
+                            x:Name="cmbDrawNumber" 
+                            Height="21"
+                            Width="120"
+                            Margin="8,0,0,0"
+                    >
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ComboBoxItem}">
+                                <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"/>
+                                <Setter Property="FontSize" Value="11"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Medium"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                            <Border CornerRadius="6" SnapsToDevicePixels="True"
+                                                            Background="{TemplateBinding Background}"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Padding="{TemplateBinding Padding}"
+                                                            Margin="5,0,5,0"
+                                                           >
+                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                          />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsHighlighted" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource color8}"/>
+                                                    <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsHighlighted" Value="False">
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </Trigger>
+
+                                            </ControlTemplate.Triggers>
+
+                                        </ControlTemplate>
+                                    </Setter.Value>
+
+                                </Setter>
+
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+
+                    </ComboBox>
+
+                </Grid>
+                <Grid Grid.Row="6" Grid.Column="6">
+                    <TextBlock 
+                            Text="FUEL VOL. FRACTION %"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="6" Grid.Column="7">
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             x:Name="tbFuelVolFraction"
+                             HorizontalContentAlignment="Center"
+                             VerticalAlignment="Center"
+                             Height="21"
+                             Width="80"
+                             Margin="8,0,0,0"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             />
+
+                </Grid>
+
                 <Grid Grid.Row="8" Grid.Column="0">
                     <TextBlock 
                             Text="PROCESS CODE"
@@ -571,6 +973,51 @@
                     </ComboBox>
 
                 </Grid>
+                <Grid Grid.Row="8" Grid.Column="3">
+                    <TextBlock 
+                            Text="DRAWING PART NUMBER"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="8" Grid.Column="4">
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             x:Name="tbDrawPartNumber"
+                             HorizontalContentAlignment="Center"
+                             VerticalAlignment="Center"
+                             Height="21"
+                             Width="120"
+                             Margin="8,0,0,0"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             />
+
+                </Grid>
+                <Grid Grid.Row="8" Grid.Column="6">
+                    <TextBlock 
+                            Text="POISON VOL. FRACTION %"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="8" Grid.Column="7">
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             x:Name="tbPoisonVolFraction"
+                             HorizontalContentAlignment="Center"
+                             VerticalAlignment="Center"
+                             Height="21"
+                             Width="80"
+                             Margin="8,0,0,0"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             />
+
+                </Grid>
+                
                 <Grid Grid.Row="10" Grid.Column="0">
                     <TextBlock 
                             Text="DE SPECIMEN ID"
@@ -633,6 +1080,91 @@
                         
                         
                     </ComboBox>
+
+                </Grid>
+                <Grid Grid.Row="10" Grid.Column="3">
+                    <TextBlock 
+                            Text="MULTIPLE SPOOK ZONES"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="10" Grid.Column="4">
+                    <ComboBox Style="{DynamicResource ComboBox}"
+                            Cursor="Hand"
+                            HorizontalContentAlignment="Center"
+                            VerticalAlignment="Center"
+                            x:Name="cmbMultSpookZones" 
+                            Height="21"
+                            Width="120"
+                            Margin="8,0,0,0"
+                    >
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ComboBoxItem}">
+                                <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"/>
+                                <Setter Property="FontSize" Value="11"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Medium"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                            <Border CornerRadius="6" SnapsToDevicePixels="True"
+                                                            Background="{TemplateBinding Background}"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Padding="{TemplateBinding Padding}"
+                                                            Margin="5,0,5,0"
+                                                           >
+                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                          />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsHighlighted" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource color8}"/>
+                                                    <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsHighlighted" Value="False">
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </Trigger>
+
+                                            </ControlTemplate.Triggers>
+
+                                        </ControlTemplate>
+                                    </Setter.Value>
+
+                                </Setter>
+
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+
+                    </ComboBox>
+
+                </Grid>
+                <Grid Grid.Row="10" Grid.Column="6">
+                    <TextBlock 
+                            Text="DO - E20 f/cc"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource titleColor1}"
+                            
+                    />
+                </Grid>
+                <Grid Grid.Row="10" Grid.Column="7">
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             x:Name="tbDoE20"
+                             HorizontalContentAlignment="Center"
+                             VerticalAlignment="Center"
+                             Height="21"
+                             Width="80"
+                             Margin="8,0,0,0"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             />
 
                 </Grid>
 
@@ -700,9 +1232,6 @@
                     </ComboBox>
 
                 </Grid>
-
-
-
                 <Grid Grid.Row="12" Grid.Column="3">
                     <TextBlock 
                             Text="DISCHARGED FROM REACTOR"
@@ -713,335 +1242,29 @@
                     />
                 </Grid>
 
-                <Grid Grid.Row="10" Grid.Column="3">
+                <Grid Grid.Row="12" Grid.Column="6">
                     <TextBlock 
-                            Text="MULTIPLE SPOOK ZONES"
+                            Text="FINAL SUBSTRATE DIA.(Mils)"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             Foreground="{StaticResource titleColor1}"
                             
                     />
                 </Grid>
-                <Grid Grid.Row="10" Grid.Column="4">
-                    <ComboBox Style="{DynamicResource ComboBox}"
-                            Cursor="Hand"
-                            HorizontalContentAlignment="Center"
-                            VerticalAlignment="Center"
-                            x:Name="cmbMultSpookZones" 
-                            Height="21"
-                            Width="120"
-                            Margin="8,0,0,0"
-                    >
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ComboBoxItem}">
-                                <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"/>
-                                <Setter Property="FontSize" Value="11"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontWeight" Value="Medium"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                                            <Border CornerRadius="6" SnapsToDevicePixels="True"
-                                                            Background="{TemplateBinding Background}"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            Padding="{TemplateBinding Padding}"
-                                                            Margin="5,0,5,0"
-                                                           >
-                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                                          />
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsHighlighted" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource color8}"/>
-                                                    <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
-                                                </Trigger>
-                                                <Trigger Property="IsHighlighted" Value="False">
-                                                    <Setter Property="Foreground" Value="Black"/>
-                                                </Trigger>
-
-                                            </ControlTemplate.Triggers>
-
-                                        </ControlTemplate>
-                                    </Setter.Value>
-
-                                </Setter>
-
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-
-                    </ComboBox>
+                <Grid Grid.Row="12" Grid.Column="7">
+                    <TextBox Style="{DynamicResource TextBox}" 
+                             x:Name="tbFinalSubsDia"
+                             HorizontalContentAlignment="Center"
+                             VerticalAlignment="Center"
+                             Height="21"
+                             Width="80"
+                             Margin="8,0,0,0"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             />
 
                 </Grid>
 
-                <Grid Grid.Row="8" Grid.Column="3">
-                    <TextBlock 
-                            Text="DRAWING PART NUMBER"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Foreground="{StaticResource titleColor1}"
-                            
-                    />
-                </Grid>
-
-                <Grid Grid.Row="6" Grid.Column="3">
-                    <TextBlock 
-                            Text="DRAWING NUMBER"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Foreground="{StaticResource titleColor1}"
-                            
-                    />
-                </Grid>
-                <Grid Grid.Row="6" Grid.Column="4">
-                    <ComboBox Style="{DynamicResource ComboBox}"
-                            Cursor="Hand"
-                            HorizontalContentAlignment="Center"
-                            VerticalAlignment="Center"
-                            x:Name="cmbDrawNumber" 
-                            Height="21"
-                            Width="120"
-                            Margin="8,0,0,0"
-                    >
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ComboBoxItem}">
-                                <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"/>
-                                <Setter Property="FontSize" Value="11"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontWeight" Value="Medium"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                                            <Border CornerRadius="6" SnapsToDevicePixels="True"
-                                                            Background="{TemplateBinding Background}"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            Padding="{TemplateBinding Padding}"
-                                                            Margin="5,0,5,0"
-                                                           >
-                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                                          />
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsHighlighted" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource color8}"/>
-                                                    <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
-                                                </Trigger>
-                                                <Trigger Property="IsHighlighted" Value="False">
-                                                    <Setter Property="Foreground" Value="Black"/>
-                                                </Trigger>
-
-                                            </ControlTemplate.Triggers>
-
-                                        </ControlTemplate>
-                                    </Setter.Value>
-
-                                </Setter>
-
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-
-                    </ComboBox>
-
-                </Grid>
-
-                <Grid Grid.Row="4" Grid.Column="3">
-                    <TextBlock 
-                            Text="CLADDING INGOT"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Foreground="{StaticResource titleColor1}"
-                            
-                    />
-                </Grid>
-                <Grid Grid.Row="4" Grid.Column="4">
-                    <ComboBox Style="{DynamicResource ComboBox}"
-                            Cursor="Hand"
-                            HorizontalContentAlignment="Center"
-                            VerticalAlignment="Center"
-                            x:Name="cmbCladdIngot" 
-                            Height="21"
-                            Width="120"
-                            Margin="8,0,0,0"
-                    >
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ComboBoxItem}">
-                                <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"/>
-                                <Setter Property="FontSize" Value="11"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontWeight" Value="Medium"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                                            <Border CornerRadius="6" SnapsToDevicePixels="True"
-                                                            Background="{TemplateBinding Background}"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            Padding="{TemplateBinding Padding}"
-                                                            Margin="5,0,5,0"
-                                                           >
-                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                                          />
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsHighlighted" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource color8}"/>
-                                                    <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
-                                                </Trigger>
-                                                <Trigger Property="IsHighlighted" Value="False">
-                                                    <Setter Property="Foreground" Value="Black"/>
-                                                </Trigger>
-
-                                            </ControlTemplate.Triggers>
-
-                                        </ControlTemplate>
-                                    </Setter.Value>
-
-                                </Setter>
-
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-
-                    </ComboBox>
-
-                </Grid>
-
-                <Grid Grid.Row="2" Grid.Column="3">
-                    <TextBlock 
-                            Text="OWNING SITE"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Foreground="{StaticResource titleColor1}"
-                            
-                    />
-                </Grid>
-                <Grid Grid.Row="2" Grid.Column="4">
-                    <ComboBox Style="{DynamicResource ComboBox}"
-                            Cursor="Hand"
-                            HorizontalContentAlignment="Center"
-                            VerticalAlignment="Center"
-                            x:Name="cmbOwnSite" 
-                            Height="21"
-                            Width="120"
-                            Margin="8,0,0,0"
-                    >
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ComboBoxItem}">
-                                <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"/>
-                                <Setter Property="FontSize" Value="11"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontWeight" Value="Medium"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                                            <Border CornerRadius="6" SnapsToDevicePixels="True"
-                                                            Background="{TemplateBinding Background}"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            Padding="{TemplateBinding Padding}"
-                                                            Margin="5,0,5,0"
-                                                           >
-                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                                          />
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsHighlighted" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource color8}"/>
-                                                    <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
-                                                </Trigger>
-                                                <Trigger Property="IsHighlighted" Value="False">
-                                                    <Setter Property="Foreground" Value="Black"/>
-                                                </Trigger>
-
-                                            </ControlTemplate.Triggers>
-
-                                        </ControlTemplate>
-                                    </Setter.Value>
-
-                                </Setter>
-
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-
-                    </ComboBox>
-
-                </Grid>
-
-                <Grid Grid.Row="0" Grid.Column="3">
-                    <TextBlock 
-                            Text="HAS DEFECTS"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Foreground="{StaticResource titleColor1}"
-                            
-                    />
-                </Grid>
-                <Grid Grid.Row="0" Grid.Column="4">
-                    <ComboBox Style="{DynamicResource ComboBox}"
-                            Cursor="Hand"
-                            HorizontalContentAlignment="Center"
-                            VerticalAlignment="Center"
-                            x:Name="cmbHasDefect" 
-                            Height="21"
-                            Width="120"
-                            Margin="8,0,0,0"
-                    >
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ComboBoxItem}">
-                                <Setter Property="FontFamily" Value="../Fonts/Roboto-Light.ttf #Roboto"/>
-                                <Setter Property="FontSize" Value="11"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontWeight" Value="Medium"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                                            <Border CornerRadius="6" SnapsToDevicePixels="True"
-                                                            Background="{TemplateBinding Background}"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            Padding="{TemplateBinding Padding}"
-                                                            Margin="5,0,5,0"
-                                                           >
-                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                                          />
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsHighlighted" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource color8}"/>
-                                                    <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
-                                                </Trigger>
-                                                <Trigger Property="IsHighlighted" Value="False">
-                                                    <Setter Property="Foreground" Value="Black"/>
-                                                </Trigger>
-
-                                            </ControlTemplate.Triggers>
-
-                                        </ControlTemplate>
-                                    </Setter.Value>
-
-                                </Setter>
-
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-
-                    </ComboBox>
-
-                </Grid>
 
 
 
