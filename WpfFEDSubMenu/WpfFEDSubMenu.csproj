@@ -59,6 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\LabelAndCombo.xaml.cs">
+      <DependentUpon>LabelAndCombo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helper\Converter.cs" />
     <Compile Include="Model\MainModel.cs" />
     <Compile Include="Model\SpecimenModel.cs" />
@@ -77,6 +80,10 @@
     <Compile Include="Views\SwitchBoardView.xaml.cs">
       <DependentUpon>SwitchBoardView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Components\LabelAndCombo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles_Templates\ButtonStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -2,11 +2,12 @@ C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\bin\Debug\WpfFEDSubMenu.
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\bin\Debug\WpfFEDSubMenu.exe
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\bin\Debug\WpfFEDSubMenu.pdb
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\WpfFEDSubMenu.csproj.AssemblyReference.cache
-C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\WpfFEDSubMenu.csproj.SuggestedBindingRedirects.cache
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Styles_Templates\ButtonStyles.baml
+C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Styles_Templates\SpecimenViewStyles.baml
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Styles_Templates\MainWindowStyles.baml
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Styles_Templates\NNLColors.baml
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Styles_Templates\Templates.baml
+C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Components\LabelAndCombo.g.cs
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\UserControl\PopupUserControl.g.cs
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Views\MainWindow.g.cs
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Views\Movies.g.cs
@@ -17,6 +18,7 @@ C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\GeneratedInter
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\WpfFEDSubMenu_MarkupCompile.cache
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\WpfFEDSubMenu_MarkupCompile.lref
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\App.baml
+C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Components\LabelAndCombo.baml
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\UserControl\PopupUserControl.baml
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Views\MainWindow.baml
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Views\Movies.baml
@@ -28,4 +30,3 @@ C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\WpfFEDSubMenu.
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\WpfFEDSubMenu.csproj.CoreCompileInputs.cache
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\WpfFEDSubMenu.exe
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\WpfFEDSubMenu.pdb
-C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Styles_Templates\SpecimenViewStyles.baml

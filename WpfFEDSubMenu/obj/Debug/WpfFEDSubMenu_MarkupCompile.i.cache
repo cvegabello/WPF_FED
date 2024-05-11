@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\App.xaml
-10-1755762901
+11-1894080090
 
-19-1511241486
+20-606178093
 17-1090875246
-Styles_Templates\ButtonStyles.xaml;Styles_Templates\SpecimenViewStyles.xaml;UserControl\PopupUserControl.xaml;Styles_Templates\MainWindowStyles.xaml;Styles_Templates\NNLColors.xaml;Styles_Templates\Templates.xaml;Views\MainWindow.xaml;Views\Movies.xaml;Views\SpecimenView.xaml;Views\SwitchBoardView.xaml;
+Components\LabelAndCombo.xaml;Styles_Templates\ButtonStyles.xaml;Styles_Templates\SpecimenViewStyles.xaml;UserControl\PopupUserControl.xaml;Styles_Templates\MainWindowStyles.xaml;Styles_Templates\NNLColors.xaml;Styles_Templates\Templates.xaml;Views\MainWindow.xaml;Views\Movies.xaml;Views\SpecimenView.xaml;Views\SwitchBoardView.xaml;
 
 True
 

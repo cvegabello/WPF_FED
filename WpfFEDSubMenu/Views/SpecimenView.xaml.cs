@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+using WpfFEDSubMenu.ViewModel;
 
 namespace WpfFEDSubMenu.Views
 {
@@ -20,9 +22,18 @@ namespace WpfFEDSubMenu.Views
     /// </summary>
     public partial class SpecimenView : UserControl
     {
+        SpecimenViewModel viewModel;
         public SpecimenView()
         {
             InitializeComponent();
+            viewModel = new SpecimenViewModel();
+            this.DataContext = viewModel;
+        }
+               
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.recorrerCollection();
         }
     }
 }

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:WpfFEDSubMenu.Views"
              xmlns:localHelper="clr-namespace:WpfFEDSubMenu.Helper"
              mc:Ignorable="d" 
+             
              d:DesignHeight="500" d:DesignWidth="750">
     <!--Fade In Animation-->
 
@@ -47,7 +48,9 @@
             </LinearGradientBrush>
         </Border.BorderBrush>
 
-        <Grid >
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            
+            
 
             <!--Content-->
             
@@ -81,7 +84,7 @@
 
                             </DataTrigger>
 
-                            <!--<DataTrigger Binding="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType=Window}, Converter={x:Static localHelper:IsLessThanConverter.Instance}, ConverterParameter=1000}"
+                            <DataTrigger Binding="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType=Window}, Converter={x:Static localHelper:IsLessThanConverter.Instance}, ConverterParameter=1000}"
                                      Value="True">
 
                                 <Setter Property="ItemTemplate" Value="{StaticResource Laptop_Layout}" />
@@ -89,7 +92,7 @@
                                 <Setter Property="HorizontalAlignment" Value="Center" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
 
-                            </DataTrigger>-->
+                            </DataTrigger>
 
 
                             <DataTrigger Binding="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={x:Static localHelper:IsLessThanConverter.Instance}, ConverterParameter=890}"
@@ -102,7 +105,7 @@
 
                             </DataTrigger>
 
-                            <!--<DataTrigger Binding="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType=Window}, Converter={x:Static localHelper:IsLessThanConverter.Instance}, ConverterParameter=890}"
+                            <DataTrigger Binding="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType=Window}, Converter={x:Static localHelper:IsLessThanConverter.Instance}, ConverterParameter=890}"
                                      Value="True">
 
                                 <Setter Property="ItemTemplate" Value="{StaticResource Smaller1_Layout}" />
@@ -110,7 +113,7 @@
                                 <Setter Property="HorizontalAlignment" Value="Center" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
 
-                            </DataTrigger>-->
+                            </DataTrigger>
 
                             <DataTrigger Binding="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={x:Static localHelper:IsLessThanConverter.Instance}, ConverterParameter=760}"
                                      Value="True">
@@ -123,7 +126,7 @@
 
                             </DataTrigger>
 
-                            <!--<DataTrigger Binding="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType=Window}, Converter={x:Static localHelper:IsLessThanConverter.Instance}, ConverterParameter=760}"
+                            <DataTrigger Binding="{Binding Path=ActualHeight, RelativeSource={RelativeSource AncestorType=Window}, Converter={x:Static localHelper:IsLessThanConverter.Instance}, ConverterParameter=760}"
                                      Value="True">
 
                                 <Setter Property="ItemTemplate" Value="{StaticResource Smaller2_Layout}" />
@@ -132,7 +135,7 @@
                                 <Setter Property="VerticalAlignment" Value="Center" />
 
 
-                            </DataTrigger>-->
+                            </DataTrigger>
 
                         </Style.Triggers>
 
@@ -142,7 +145,7 @@
                 </ItemsControl.Style>
 
                 <!--Uniform Grid-->
-
+                
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="4"
@@ -152,7 +155,7 @@
 
             </ItemsControl>
 
-        </Grid>
+        </WrapPanel>
 
 
 

@@ -10,7 +10,7 @@
         Title="MainWindow"
         MinHeight="450"
         Height="950"
-        MinWidth="550"
+        MinWidth="640"
         Width="1460"
         WindowStyle="None"
         ResizeMode="CanResizeWithGrip"
