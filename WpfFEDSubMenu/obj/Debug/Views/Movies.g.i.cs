@@ -53,7 +53,7 @@ namespace WpfFEDSubMenu.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WpfFEDSubMenu;component/views/movies.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FED_DOT_NET;component/views/movies.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Views\Movies.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

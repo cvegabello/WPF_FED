@@ -54,7 +54,7 @@ namespace WpfFEDSubMenu.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WpfFEDSubMenu;component/views/switchboardview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FED_DOT_NET;component/views/switchboardview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Views\SwitchBoardView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

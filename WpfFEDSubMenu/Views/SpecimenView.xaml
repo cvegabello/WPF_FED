@@ -304,7 +304,7 @@
                             </Border>
 
 
-                            <Border CornerRadius="6,6,6,6" BorderThickness="2,2,2,2" BorderBrush="White" Style="{DynamicResource BorderPanelStyle1}">
+                            <Border CornerRadius="6,6,6,6" BorderThickness="2,2,2,2" BorderBrush="White" Height="150" Style="{DynamicResource BorderPanelStyle1}">
                                 <Button Content="Click me" Width="60" Height="50" Margin="5 0" Click="Button_Click" Cursor="Hand"/>
                             </Border>
 

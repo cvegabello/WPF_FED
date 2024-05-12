@@ -59,7 +59,7 @@ namespace WpfFEDSubMenu {
             
             #line default
             #line hidden
-            System.Uri resourceLocater = new System.Uri("/WpfFEDSubMenu;component/app.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FED_DOT_NET;component/app.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
