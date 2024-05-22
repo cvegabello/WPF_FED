@@ -950,13 +950,15 @@
 
     </DataTemplate>-->
 
+   
 
 
 
     <!--style for the whole tab control-->
-    <Style TargetType="{x:Type TabControl}">
-        <!--<Setter Property="ItemTemplate"
-                 Value="{StaticResource TabItemDesign}" />-->
+    <Style x:Key="MainTabControlStyle" 
+        TargetType="{x:Type TabControl}">
+        <Setter Property="ItemTemplate"
+                 Value="{StaticResource TabItemDesign}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TabControl">
@@ -968,10 +970,17 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <!--TabPanel needs to be on top of the selected content border-->
-                        <TabPanel IsItemsHost="True"
-                                      Grid.Row="0"
-                                      Grid.RowSpan="2"
-                                      Panel.ZIndex="1" />
+                        <ScrollViewer x:Uid="1" Name="TabHeadersScrollViewer" 
+                                      Grid.Row="0" Grid.RowSpan="2" 
+                                      Panel.ZIndex="1" 
+                                      HorizontalScrollBarVisibility="Hidden" 
+                                      VerticalScrollBarVisibility="Disabled" 
+                                      Width="800">
+                            <StackPanel Orientation="Horizontal">
+                                <TabPanel IsItemsHost="True" />
+                            </StackPanel>
+                        </ScrollViewer>
+                        
                         <Border Grid.Row="1"
                                     Grid.RowSpan="2"
                                     CornerRadius="{StaticResource TabControl_Corner_Radius}"

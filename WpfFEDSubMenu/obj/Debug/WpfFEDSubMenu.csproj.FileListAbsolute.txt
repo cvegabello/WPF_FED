@@ -34,3 +34,7 @@ C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\FED_DOT_NET.ex
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\FED_DOT_NET.application
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\FED_DOT_NET.exe
 C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\FED_DOT_NET.pdb
+C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Views\Page1.g.cs
+C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Views\Page1.baml
+C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Views\Page2.g.cs
+C:\Users\carlo\source\repos\WpfFEDSubMenu\WpfFEDSubMenu\obj\Debug\Views\Page2.baml

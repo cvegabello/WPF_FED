@@ -132,12 +132,24 @@ namespace WpfFEDSubMenu.Components
         public static readonly DependencyProperty ComboFontSizeProperty =
             DependencyProperty.Register("ComboFontSize", typeof(double), typeof(LabelAndCombo), new PropertyMetadata(12.0));
 
+        public static readonly RoutedEvent DropDownClosedEvent =
+            EventManager.RegisterRoutedEvent(nameof(DropDownClosedComponent), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(LabelAndCombo));
 
 
+        public event RoutedEventHandler DropDownClosedComponent
+        {
+            add { AddHandler(DropDownClosedEvent, value); } 
+            remove { RemoveHandler(DropDownClosedEvent, value); }
+        }
 
         public LabelAndCombo()
         {
             InitializeComponent();
+        }
+
+        private void ComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(DropDownClosedEvent));
         }
     }
 }

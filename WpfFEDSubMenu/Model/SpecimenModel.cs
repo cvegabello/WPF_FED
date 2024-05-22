@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using WpfFEDSubMenu.ViewModel;
 
 namespace WpfFEDSubMenu.Model
 {
     // Tab Control
-    
+
     public class TabControlItems : ViewModelBase
     {
         public string TCName { get; set; }
@@ -30,6 +31,7 @@ namespace WpfFEDSubMenu.Model
                 OnPropertyChanged(nameof(IsReadOnly));
             }
         }
+        
     }
 
     public class ItemsCarlosCombo1

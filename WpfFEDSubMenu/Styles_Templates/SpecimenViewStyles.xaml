@@ -3,10 +3,11 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
                     xmlns:components="clr-namespace:WpfFEDSubMenu.Components"
-                    xmlns:localHelper="clr-namespace:WpfFEDSubMenu.Helper">
-    
+                    xmlns:localHelper="clr-namespace:WpfFEDSubMenu.Helper"
+                    >
 
-<!--REGION FOCUSVISUAL-->
+    
+    <!--REGION FOCUSVISUAL-->
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -268,7 +269,7 @@
 
     
 
-    <DataTemplate x:Key="DesktopComponent_Layout">
+    <!--<DataTemplate x:Key="DesktopComponent_Layout">
         <Border Margin="10 3 3 1">
             <components:LabelAndCombo LabelText="{Binding TCName}"
                                         ComboTag = "{Binding TagCombo}"
@@ -277,6 +278,9 @@
                                         ComboDisplayMemberPath="{Binding DisplayMemberPath}"
                                         ComboIsReadOnly ="{Binding IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         ComboWidth="{Binding WidthCombo}"
+                                        DropDownClosedComponent="DropDownMessageComponent"
+                                      
+                
       
         />
 
@@ -305,13 +309,13 @@
     <ItemsPanelTemplate x:Key="MyItemsPanelTemplate">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         
-    </ItemsPanelTemplate>
+    </ItemsPanelTemplate>-->
     
-    <Style x:Key="ComponentStyle" TargetType="{x:Type ItemsControl}">
+    <!--<Style x:Key="ComponentStyle" TargetType="{x:Type ItemsControl}">
 
         <Setter Property="ItemTemplate" Value="{StaticResource DesktopComponent_Layout}"/>
         <Setter Property="ItemsPanel" Value="{StaticResource MyItemsPanelTemplate}"/>
-
+        
         <Style.Triggers>
 
             <DataTrigger Binding="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={x:Static localHelper:IsLessThanConverter.Instance}, ConverterParameter=950}"
@@ -324,7 +328,7 @@
            
         </Style.Triggers>
 
-    </Style>
+    </Style>-->
 
     <Style x:Key="BorderPanelStyle1" TargetType="{x:Type Border}">
         <Setter Property="Margin" Value="2 0 2 0"/>

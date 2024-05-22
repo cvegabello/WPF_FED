@@ -8,7 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1000"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" 
-             xmlns:components="clr-namespace:WpfFEDSubMenu.Components">
+             xmlns:components="clr-namespace:WpfFEDSubMenu.Components"
+             xmlns:localHelper="clr-namespace:WpfFEDSubMenu.Helper">
 
     <UserControl.Resources>
         <!--REGION TEXTBOX-->
@@ -64,6 +65,82 @@
             </Style.Triggers>
         </Style>
         <!--ENDREGION-->
+
+        <DataTemplate x:Key="DesktopComponent_Layout">
+            <Border Margin="10 3 3 1">
+                <components:LabelAndCombo LabelText="{Binding TCName}"
+                                    ComboTag = "{Binding TagCombo}"
+                                    ComboText="{Binding TCImage}"
+                                    ComboItemSource="{Binding dataSourceCombo}"
+                                    ComboDisplayMemberPath="{Binding DisplayMemberPath}"
+                                    ComboIsReadOnly ="{Binding IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    ComboWidth="{Binding WidthCombo}"
+                                    DropDownClosedComponent="DropDownMessageComponent"
+    
+    />
+
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MediumComponent_Layout">
+            <Border Margin="10 3 3 1">
+                <components:LabelAndCombo LabelText="{Binding TCName}"
+                                ComboTag = "{Binding TagCombo}"
+                                ComboText="{Binding TCImage}"
+                                ComboItemSource="{Binding dataSourceCombo}"
+                                ComboDisplayMemberPath="{Binding DisplayMemberPath}"
+                                ComboIsReadOnly ="{Binding IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                ComboWidth="110"
+                                ComboFontSize="9"
+                                ComboHeight="18"
+  
+/>
+
+            </Border>
+        </DataTemplate>
+
+        <ItemsPanelTemplate x:Key="MyItemsPanelTemplate">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        </ItemsPanelTemplate>
+
+        <Style x:Key="ComponentStyle" TargetType="{x:Type ItemsControl}">
+
+            <Setter Property="ItemTemplate" Value="{StaticResource DesktopComponent_Layout}"/>
+            <Setter Property="ItemsPanel" Value="{StaticResource MyItemsPanelTemplate}"/>
+
+            <Style.Triggers>
+
+                <DataTrigger Binding="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Window}, Converter={x:Static localHelper:IsLessThanConverter.Instance}, ConverterParameter=950}"
+          Value="True">
+
+                    <Setter Property="ItemTemplate" Value="{StaticResource MediumComponent_Layout}" />
+
+                </DataTrigger>
+
+
+            </Style.Triggers>
+
+        </Style>
+
+        <!--<Style x:Key="TabControlStyle" TargetType="TabControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabControl">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ScrollViewer x:Name="TabHeadersScrollVw" Margin ="10 1 20 1" Grid.Row="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Width="auto">
+                                <TabPanel Background="LightGray" IsItemsHost="True"/>
+                            </ScrollViewer>
+                            <ContentPresenter Grid.Row="1" ContentSource="SelectedContent"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
 
     </UserControl.Resources>
 
@@ -290,6 +367,18 @@
                         </Grid.ColumnDefinitions>-->
 
 
+                        <!--<components:LabelAndCombo LabelText="{Binding TCName}"
+                                ComboTag = "{Binding TagCombo}"
+                                ComboText="{Binding TCImage}"
+                                ComboItemSource="{Binding dataSourceCombo}"
+                                ComboDisplayMemberPath="{Binding DisplayMemberPath}"
+                                ComboIsReadOnly ="{Binding IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                ComboWidth="{Binding WidthCombo}"
+                                DropDownClosedComponent="DropDownMessageComponent"
+                                
+/>-->
+
+
 
                         <WrapPanel Orientation="Horizontal" Style="{DynamicResource WrapPanelStyle1}" >
 
@@ -323,84 +412,369 @@
 
             <Grid Grid.Row="2">
 
-                <TabControl Background="{StaticResource tabControlColor}" 
-                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                            Margin="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1" Width="auto">
+
+                    <Button Name="ScrollLeftButton" Content="⟵" Width="50" Click="ScrollLeftButton_Click"/>
+                    <Button Margin="8" Name="ScrollRightButton" Content="⟶" Width="50" Click="ScrollRightButton_Click"/>
+                    <TabControl x:Name="MainTabControl"
+                                Background="{StaticResource tabControlColor}" 
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                Style="{StaticResource MainTabControlStyle}">
+
+                        <!--style for the whole tab control-->
+                        <!--<TabControl.Style>
+                            <Style TargetType="TabControl">
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabControl">
+                                            <Grid UseLayoutRounding="True">
+                                                <Grid.RowDefinitions>
+                                                    --><!--3 rows for the TabPanel, overlap, and the selected content--><!--
+                                                    <RowDefinition Height="57" />
+                                                    <RowDefinition Height="3" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                --><!--TabPanel needs to be on top of the selected content border--><!--
+                                                <ScrollViewer x:Name="TabHeadersScrollVw" 
+                                                              Grid.Row="0" Grid.RowSpan="2" 
+                                                              Panel.ZIndex="1" 
+                                                              HorizontalScrollBarVisibility="Hidden" 
+                                                              VerticalScrollBarVisibility="Disabled" 
+                                                              Width="800">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TabPanel IsItemsHost="True" />
+                                                    </StackPanel>
+                                                </ScrollViewer>
+
+                                                <Border Grid.Row="1"
+                                                        Grid.RowSpan="2"
+                                                        CornerRadius="{StaticResource TabControl_Corner_Radius}"
+                                                        Panel.ZIndex="0"
+                                                        BorderThickness="{StaticResource Tab_Border_Thickness}"
+                                                        Background="{TemplateBinding Background}"
+                                                        BorderBrush="Chocolate">
+                                                    <ContentPresenter Margin="4" ContentSource="SelectedContent" />
+                                                </Border>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
 
 
-                    <TabItem Style="{StaticResource TabItemStyle}">
-                        <TabItem.Header >
-                            <StackPanel Orientation="Vertical">
-                                <Image Source="../Assets/img_builts.png"
+                        </TabControl.Style>-->
+
+
+                        <!--<TabControl.Style>
+                                <Style TargetType="TabControl">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="TabControl">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <ScrollViewer x:Name="TabHeadersScrollVw" Grid.Row="0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" Width="800">
+                                                        <TabPanel x:Name="HeaderPanel" Panel.ZIndex="1" Background="LightGray" IsItemsHost="True"/>
+                                                    </ScrollViewer>
+                                                    <ContentPresenter Grid.Row="1" ContentSource="SelectedContent"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </TabControl.Style>-->
+
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header >
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_builts.png"
                                         Stretch="Fill"
                                         Height="20"
                                         Width="20"
                                         Margin="0,0,0,3"/>
-                                <TextBlock Text="As Builts" 
+                                            <TextBlock Text="As Builts" 
                                             Foreground="Blue"
                                             TextAlignment="Center"/>
-                            </StackPanel>
-                        </TabItem.Header>
-                        <Label Content="Content Blue here..." />
-                    </TabItem>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <StackPanel>
+                                        <Frame x:Name="MyFrame" Margin="0 20 0 0" Height="270" Width="700"/>
 
-                    <TabItem Style="{StaticResource TabItemStyle}">
-                        <TabItem.Header>
-                            <StackPanel Orientation="Vertical">
-                                <Image Source="../Assets/img_specHistory.png"
-                                        Stretch="Fill"
-                                        Height="20"
-                                        Width="20"
-                                        Margin="0,0,0,1"/>
-                                <TextBlock  Foreground="Blue"
-                                            TextAlignment="Center"
-                                            TextWrapping="Wrap">
-                                            <Run Text="Specimen"/>
-                                            <Run Text="History"/>
-                                </TextBlock>
-                            </StackPanel>
-                        </TabItem.Header>
-                        <Label Content="Content GREEN here..." />
-                    </TabItem>
+                                    </StackPanel>
 
-                    <TabItem Style="{StaticResource TabItemStyle}">
-                        <TabItem.Header>
-                            <StackPanel Orientation="Vertical">
-                                <Image Source="../Assets/img_spriteOut.png"
-                                        Stretch="Fill"
-                                        Height="20"
-                                        Width="20"
-                                        Margin="0,0,0,3"/>
-                                <TextBlock Text="Sprite Output" 
-                                            Foreground="Blue"
-                                            TextAlignment="Center"/>
-                            </StackPanel>
-                        </TabItem.Header>
-                        <Label Content="Content Black here..." />
-                    </TabItem>
+                                </TabItem>
 
-                    <TabItem Style="{StaticResource TabItemStyle}">
-                        <TabItem.Header>
-                            <StackPanel Orientation="Vertical">
-                                <Image Source="../Assets/img_ILSValues.png"
-                                        Stretch="Fill"
-                                        Height="20"
-                                        Width="20"
-                                        Margin="0,0,0,3"/>
-                                <TextBlock Text="ILS Values" 
-                                            Foreground="Blue"
-                                            TextAlignment="Center"/>
-                            </StackPanel>
-                        </TabItem.Header>
-                        <Label Content="Content Black here..." />
-                    </TabItem>
+                                <TabItem Style="{StaticResource TabItemStyle}" >
+                                    <TabItem.Header>
+                                        <StackPanel Width="70"  Orientation="Vertical" MouseUp="StackPanel_MouseUp">
+                                            <Image Source="../Assets/img_specHistory.png"
+                                            Stretch="Fill"
+                                            Height="20"
+                                            Width="20"
+                                            Margin="0,0,0,1"/>
+                                            <TextBlock  Foreground="Blue"
+                                                TextAlignment="Center"
+                                                TextWrapping="Wrap">
+                                                <Run Text="Specimen"/>
+                                                <Run Text="History"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <StackPanel>
+                                        <Frame x:Name="MyFrame2" Margin="0 20 0 0" Height="270" Width="700"/>
 
-                </TabControl>
+                                    </StackPanel>
+                        </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_spriteOut.png"
+                                            Stretch="Fill"
+                                            Height="20"
+                                            Width="20"
+                                            Margin="0,0,0,3"/>
+                                            <TextBlock Text="Sprite Output" 
+                                                Foreground="Blue"
+                                                TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content Black here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_ILSValues.png"
+                                            Stretch="Fill"
+                                            Height="20"
+                                            Width="20"
+                                            Margin="0,0,0,3"/>
+                                            <TextBlock Text="ILS Values" 
+                                                Foreground="Blue"
+                                                TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content Black here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header >
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_builts.png"
+                        Stretch="Fill"
+                        Height="20"
+                        Width="20"
+                        Margin="0,0,0,3"/>
+                                            <TextBlock Text="As Builts" 
+                            Foreground="Blue"
+                            TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content Blue here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_specHistory.png"
+                        Stretch="Fill"
+                        Height="20"
+                        Width="20"
+                        Margin="0,0,0,1"/>
+                                            <TextBlock  Foreground="Blue"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap">
+                            <Run Text="Specimen"/>
+                            <Run Text="History"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content GREEN here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_spriteOut.png"
+                        Stretch="Fill"
+                        Height="20"
+                        Width="20"
+                        Margin="0,0,0,3"/>
+                                            <TextBlock Text="Sprite Output" 
+                            Foreground="Blue"
+                            TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content Black here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_ILSValues.png"
+                        Stretch="Fill"
+                        Height="20"
+                        Width="20"
+                        Margin="0,0,0,3"/>
+                                            <TextBlock Text="ILS Values" 
+                            Foreground="Blue"
+                            TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content Black here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header >
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_builts.png"
+                        Stretch="Fill"
+                        Height="20"
+                        Width="20"
+                        Margin="0,0,0,3"/>
+                                            <TextBlock Text="As Builts" 
+                            Foreground="Blue"
+                            TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content Blue here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_specHistory.png"
+                        Stretch="Fill"
+                        Height="20"
+                        Width="20"
+                        Margin="0,0,0,1"/>
+                                            <TextBlock  Foreground="Blue"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap">
+                            <Run Text="Specimen"/>
+                            <Run Text="History"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content GREEN here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_spriteOut.png"
+                        Stretch="Fill"
+                        Height="20"
+                        Width="20"
+                        Margin="0,0,0,3"/>
+                                            <TextBlock Text="Sprite Output" 
+                            Foreground="Blue"
+                            TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content Black here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_ILSValues.png"
+                        Stretch="Fill"
+                        Height="20"
+                        Width="20"
+                        Margin="0,0,0,3"/>
+                                            <TextBlock Text="ILS Values" 
+                            Foreground="Blue"
+                            TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content Black here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header >
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_builts.png"
+    Stretch="Fill"
+    Height="20"
+    Width="20"
+    Margin="0,0,0,3"/>
+                                            <TextBlock Text="As Builts" 
+        Foreground="Blue"
+        TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content Blue here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_specHistory.png"
+    Stretch="Fill"
+    Height="20"
+    Width="20"
+    Margin="0,0,0,1"/>
+                                            <TextBlock  Foreground="Blue"
+        TextAlignment="Center"
+        TextWrapping="Wrap">
+        <Run Text="Specimen"/>
+        <Run Text="History"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content GREEN here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_spriteOut.png"
+    Stretch="Fill"
+    Height="20"
+    Width="20"
+    Margin="0,0,0,3"/>
+                                            <TextBlock Text="Sprite Output" 
+        Foreground="Blue"
+        TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content Black here..." />
+                                </TabItem>
+
+                                <TabItem Style="{StaticResource TabItemStyle}">
+                                    <TabItem.Header>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Source="../Assets/img_ILSValues.png"
+    Stretch="Fill"
+    Height="20"
+    Width="20"
+    Margin="0,0,0,3"/>
+                                            <TextBlock Text="ILS Values" 
+        Foreground="Blue"
+        TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </TabItem.Header>
+                                    <Label Content="Content Black here..." />
+                                </TabItem>
+
+
+                            </TabControl>
+                </StackPanel>
+                <ContentPresenter ContentSource="SelectedContent" Grid.Row="1"/>
+
 
             </Grid>
-
         </Grid>
-
 
 
     </Border>

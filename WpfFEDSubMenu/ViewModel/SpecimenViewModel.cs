@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Data;
 using WpfFEDSubMenu.Model;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
@@ -101,7 +102,7 @@ namespace WpfFEDSubMenu.ViewModel
             TabItems3.Add(new TabControlItems { TCName = "Sandra", TCImage = @"../Assets/img_blister.png", TagCombo = "Update" , WidthCombo = 130});
             TabItems4.Add(new TabControlItems { TCName = "John", TCImage = @"../Assets/img_PCT.png", TagCombo = "Update", WidthCombo = 130 });
             TabItems4.Add(new TabControlItems { TCName = "Monica", TCImage = @"../Assets/img_RML.png", TagCombo = "Update" , WidthCombo = 130});
-            TabItems4.Add(new TabControlItems { TCName = "Thomas", TCImage = @"../Assets/closeBtn_default.png", TagCombo = "Editar", dataSourceCombo = Specimens , WidthCombo = 130});
+            TabItems4.Add(new TabControlItems { TCName = "Thomas", TCImage = @"../Assets/closeBtn_default.png", TagCombo = "Edit", dataSourceCombo = Specimens , WidthCombo = 130});
 
 
 
@@ -127,6 +128,15 @@ namespace WpfFEDSubMenu.ViewModel
                 }
             }
         }
+
+        public void ScrollLeftButton()
+        {
+            //if (TabHeadersScrollVw.HorizontalOffset > 0)
+            //{
+            //    TabHeadersScrollVw.ScrollToHorizontalOffset(TabHeadersScrollVw.HorizontalOffset - 20); // Ajusta el valor según la cantidad de desplazamiento deseada
+            //}
+        }
+
 
 
     }

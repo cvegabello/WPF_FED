@@ -41,7 +41,8 @@
                 Width="{Binding ComboWidth,ElementName=root}"
                 Margin="8,0,0,0"
                 FontSize="{Binding ComboFontSize,ElementName=root}"
-                FontWeight="Regular">
+                FontWeight="Regular" 
+                DropDownClosed="ComboBox_DropDownClosed">
             
             <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
