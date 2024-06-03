@@ -27,22 +27,22 @@ namespace WpfFEDSubMenu.Views
     public partial class SpecimenView : UserControl
     {
         SpecimenViewModel viewModel;
-        private ScrollViewer tabHeaderScrollViewer;
+        
         public SpecimenView()
         {
             InitializeComponent();
             viewModel = new SpecimenViewModel();
             this.DataContext = viewModel;
-            LoadFrame();
+            LoadFrame(tbSpecimenName.Text);
         }
 
-        private void LoadFrame()
+        private void LoadFrame(String SpecimenName)
         {
-            MyFrame.NavigationService.Navigate(new Page1());
-            Page2 page2 = new Page2();
-            MyFrame2.NavigationService.Navigate(page2);
+            MyFrame.NavigationService.Navigate(new Page1(SpecimenName));
+            MyFrame2.NavigationService.Navigate(new Page2(SpecimenName));
 
         }
+
 
 
         private void LoadScrollVwFromResource()
@@ -63,7 +63,8 @@ namespace WpfFEDSubMenu.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.recorrerCollection();
+            //viewModel.recorrerCollection();
+            LoadFrame(tbSpecimenName.Text);
         }
 
         private void DropDownMessageComponent(object sender, RoutedEventArgs e)
@@ -121,10 +122,10 @@ namespace WpfFEDSubMenu.Views
 
             //var styleFound = KeyCollectionTemplates;
 
-            if (tabHeaderScrollViewer.HorizontalOffset < tabHeaderScrollViewer.ScrollableWidth)
-            {
-                tabHeaderScrollViewer.ScrollToHorizontalOffset(tabHeaderScrollViewer.HorizontalOffset + 20); // Ajusta el valor según la cantidad de desplazamiento deseada
-            }
+            //if (tabHeaderScrollViewer.HorizontalOffset < tabHeaderScrollViewer.ScrollableWidth)
+            //{
+            //    tabHeaderScrollViewer.ScrollToHorizontalOffset(tabHeaderScrollViewer.HorizontalOffset + 20); // Ajusta el valor según la cantidad de desplazamiento deseada
+            //}
         }
 
       

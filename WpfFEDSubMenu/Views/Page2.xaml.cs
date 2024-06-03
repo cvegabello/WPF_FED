@@ -20,9 +20,10 @@ namespace FED_DOT_NET.Views
     /// </summary>
     public partial class Page2 : Page
     {
-        public Page2()
+        public Page2(String SpecimenName)
         {
             InitializeComponent();
+            Pagina2.Text = SpecimenName;
         }
     }
 }

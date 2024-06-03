@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace FED_DOT_NET.Views
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for AsBuilt.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class AsBuilt : UserControl
     {
-        public Page1(String SpecimenName)
+        public AsBuilt()
         {
             InitializeComponent();
-            Pagina1.Text = SpecimenName;
         }
     }
 }

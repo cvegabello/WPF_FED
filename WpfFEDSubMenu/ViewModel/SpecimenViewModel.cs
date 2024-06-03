@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using FED_DOT_NET.Views;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.Remoting.Messaging;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using WpfFEDSubMenu.Model;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
@@ -12,54 +15,36 @@ namespace WpfFEDSubMenu.ViewModel
     public class SpecimenViewModel : ViewModelBase
     {
 
-        //private readonly CollectionViewSource TabControlItemsCollection;
-        //public ICollectionView TCSourceCollection => TabControlItemsCollection.View;
-
         public ObservableCollection<TabControlItems> TabItems { get; set; } = new ObservableCollection<TabControlItems>();
-        //private ObservableCollection<TabControlItems> _TabItems;
-        //public ObservableCollection<TabControlItems> TabItems
-        //{
-        //    get
-        //    {
-        //        return _TabItems;
-        //    }
-        //    set
-        //    {
-        //        _TabItems = value;
-        //        OnPropertyChanged(nameof(TabItems));
-        //    } 
-        //} 
-        
-
-
-
-
-
-
         public ObservableCollection<TabControlItems> TabItems2 { get; set; } = new ObservableCollection<TabControlItems>();
         public ObservableCollection<TabControlItems> TabItems3 { get; set; } = new ObservableCollection<TabControlItems>();
         public ObservableCollection<TabControlItems> TabItems4 { get; set; } = new ObservableCollection<TabControlItems>();
         public ObservableCollection<ItemsCarlosCombo1> Specimens { get; set; } = new ObservableCollection<ItemsCarlosCombo1>();
         public ObservableCollection<ItemsCarlosCombo2> Types { get; set; } = new ObservableCollection<ItemsCarlosCombo2>();
+        public ObservableCollection<TabItem> TabItemsCarlos { get; set; } = new ObservableCollection<TabItem>();
 
-        //public ObservableCollection<ItemsCarlos> CarlosItems { get; set; } = new ObservableCollection<ItemsCarlos>();
-        //private bool _IsReadOnly;
-        //public bool IsReadOnly
-        //{
-        //    get
-        //    {
-        //        return _IsReadOnly;
-        //    }
-        //    set
-        //    {
-        //        _IsReadOnly = value;
-        //        OnPropertyChanged(nameof(IsReadOnly));
-        //    }
-        //}
+
 
 
         public SpecimenViewModel()
         {
+            var Asbuilt = new TabItem()
+            {
+                Header = "AsBuilt Carlos",
+                Content = new AsBuilt()
+            };
+
+            var SpecimenHistoryTabItem = new TabItem()
+            {
+                Header = "Specimen History Carlos",
+                Content = new SpecimenHistoryTest()
+            };
+
+            TabItemsCarlos.Add(Asbuilt);
+            TabItemsCarlos.Add(SpecimenHistoryTabItem);
+
+
+
 
             Specimens.Add(new ItemsCarlosCombo1 { ICName = "Carlos", ICLastName = "Vega" });
             Specimens.Add(new ItemsCarlosCombo1 { ICName = "Santiago", ICLastName = "Vega" });

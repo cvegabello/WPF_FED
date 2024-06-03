@@ -16,5 +16,7 @@
             </LinearGradientBrush>
         </Grid.Background>
 
+        <TextBlock x:Name="Pagina2" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26" Foreground="Azure"/>
+
     </Grid>
 </Page>
